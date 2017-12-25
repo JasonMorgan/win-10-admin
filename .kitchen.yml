@@ -1,6 +1,11 @@
 ---
 driver:
   name: vagrant
+  #winrm_transport: :plaintext
+
+transport:
+  name: winrm
+  elevated: true
 
 provisioner:
   name: chef_zero
@@ -13,14 +18,15 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: windows-10
+    driver_config:
+      box: StefanScherer/windows_10
+      customize:
+        clipboard: 'bidirectional'
 
 suites:
   - name: default
+    os_type: windows
+    shell_type: powershell
     run_list:
       - recipe[win-10-admin::default]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
