@@ -1,6 +1,6 @@
 default['win-10-admin']['packages'] = [
   'chocolatey',
-  'rsat',
+  # 'rsat',
   'googlechrome',
   'git',
   'visualstudiocode',
